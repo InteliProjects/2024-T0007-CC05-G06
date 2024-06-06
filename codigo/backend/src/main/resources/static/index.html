@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot</title>
+</head>
+<body>
+Hello
+<p></p>
+</body>
+<script>
+    let p = document.querySelector("p");
+
+    fetch('/hello')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erro ao fazer a requisição: ' + response.statusText);
+        }
+        return response.json();
+    })
+   .then(data => {
+        console.log('Dados recebidos:', data.message);
+        // Faça o que quiser com os dados recebidos
+       p.append(data.message)
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+    });
+</script>
+</html>
